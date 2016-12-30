@@ -15,8 +15,7 @@ public class Egg{
 
     float velocity = 7.0f;
 
-    //enums
-    OnBasket onBasket;
+    //enumerations
     Movement movement;
 
 
@@ -29,7 +28,6 @@ public class Egg{
         this.position.x = (basketList.basketListArray.get(basketNo).getPosition()).x + 25;
         this.position.y = (basketList.basketListArray.get(basketNo).getPosition()).y + 30;
 
-        onBasket = OnBasket.on;
         movement = Movement.stopping;
 
     }
@@ -43,50 +41,23 @@ public class Egg{
         if(position.y>Constants.WORLD_HEIGHT){
             position.y = Constants.WORLD_HEIGHT;
         }
-        /*if(position.y<0){
-            position.y = 0;
-        }*/
-
-        /*if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-
-            basketNo++;
-
-            if(basketNo>4)
-                basketNo=4;
-
-            this.position.y = (basketList.basketListArray.get(basketNo).getPosition()).y + 28;
-
-            if(this.position.x > basketList.basketListArray.get(basketNo).getPosition().x &&
-                    this.position.x < basketList.basketListArray.get(basketNo).getPosition().x + Constants.BASKET_WIDTH) {
-                onBasket = OnBasket.on;
-            }else{
-                onBasket = OnBasket.off;
-            }
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
-            //position.y-=100*delta;
-            basketNo--;
-            if(basketNo<0)
-                basketNo=0;
-            this.position.x = (basketList.basketListArray.get(basketNo).getPosition()).x + 25;
-            this.position.y = (basketList.basketListArray.get(basketNo).getPosition()).y + 28;
-        }
-
-        if(onBasket == OnBasket.on) {
-            this.position.x = (basketList.basketListArray.get(basketNo).getPosition()).x + 25;
-        }
-        */
 
         // bouncing the ball
         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+
+            // initialising the initial velocity of the ball
+            velocity = 7.0f;
+
             movement = Movement.moving;
         }
         if(movement == Movement.moving) {
-            jump();
+            ballJump();
+
+
             if(this.position.y>=basketList.basketListArray.get(basketNo+1).getPosition().y+Constants.BASKET_HEIGHT &&
                     this.position.y<=basketList.basketListArray.get(basketNo+1).getPosition().y+Constants.BASKET_HEIGHT+20) {
                 checkCollision();
-                //movement = Movement.stopping;
+
             }
         }
         else {
@@ -97,7 +68,7 @@ public class Egg{
 
     }
 
-    void jump(){
+    void ballJump(){
         if(position.y >= Gdx.graphics.getHeight())
             velocity = -7;
 
@@ -119,12 +90,7 @@ public class Egg{
         }
     }
 
-    // enumeration type to check whether the egg is on of off the basket
 
-    enum OnBasket{
-        on,
-        off
-    }
 
     enum Movement{
         moving,
