@@ -45,6 +45,11 @@ public class GameScreen extends ScreenAdapter{
         egg.render(shape);
         shape.end();
 
+        if(egg.getBasketNo()==5){
+            basketList.createNewList();
+            egg.setBasketNo(0);
+        }
+
         Gdx.app.log("GameScreen","Rendering");
     }
 

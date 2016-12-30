@@ -13,6 +13,7 @@ public class Egg{
     BasketList basketList;
     int basketNo;
 
+
     float velocity = 7.0f;
 
     //enumerations
@@ -43,12 +44,14 @@ public class Egg{
         }
 
         // bouncing the ball
-        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+        if(movement != Movement.moving){
+            if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 
-            // initialising the initial velocity of the ball
-            velocity = 7.0f;
+                // initialising the initial velocity of the ball
+                velocity = 7.0f;
 
-            movement = Movement.moving;
+                movement = Movement.moving;
+            }
         }
         if(movement == Movement.moving) {
             ballJump();
@@ -64,7 +67,7 @@ public class Egg{
         }
         else {
 
-            this.position.x = (basketList.basketListArray.get(basketNo).getPosition()).x + 20;
+            this.position.x = (basketList.basketListArray.get(basketNo).getPosition()).x + 25;
             this.position.y = (basketList.basketListArray.get(basketNo).getPosition()).y + 28;
         }
 
@@ -89,7 +92,16 @@ public class Egg{
             basketNo++;
             movement = Movement.stopping;
 
+
         }
+    }
+
+    public int getBasketNo(){
+        return basketNo;
+    }
+
+    public void setBasketNo(int basketNo){
+        this.basketNo = basketNo;
     }
 
 
