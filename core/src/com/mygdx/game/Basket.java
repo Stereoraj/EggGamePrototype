@@ -15,9 +15,6 @@ public class Basket {
 
     public  float MOVE_RATE = MathUtils.random(70,150);
 
-    private float width = 50.0f;
-    private float height = 20.0f;
-
     public Basket(float x,float y){
         position = new Vector2(x,y);
         direction = Direction.FORWARD;
@@ -25,8 +22,10 @@ public class Basket {
 
     public void update(float delta){
 
-        if(position.x + width >= Constants.WORLD_WIDTH)    direction = Direction.BACKWARD;
-        if(position.x <=0)                                  direction = Direction.FORWARD;
+        if(position.x + Constants.BASKET_WIDTH >= Constants.WORLD_WIDTH)
+            direction = Direction.BACKWARD;
+        if(position.x <=0)
+            direction = Direction.FORWARD;
 
         if(direction == Direction.FORWARD)
             position.x += delta * MOVE_RATE;
@@ -38,7 +37,7 @@ public class Basket {
 
     public void render(ShapeRenderer shape){
         shape.setColor(Color.BLACK);
-        shape.rect(position.x,position.y,width,height);
+        shape.rect(position.x,position.y,Constants.BASKET_WIDTH,Constants.BASKET_HEIGHT);
     }
 
     public Vector2 getPosition(){
