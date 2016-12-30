@@ -53,11 +53,13 @@ public class Egg{
         if(movement == Movement.moving) {
             ballJump();
 
+            // check only if the egg/ball is in the falling direction
+            if(velocity<0) {
+                if (this.position.y >= basketList.basketListArray.get(basketNo + 1).getPosition().y + Constants.BASKET_HEIGHT &&
+                        this.position.y <= basketList.basketListArray.get(basketNo + 1).getPosition().y + Constants.BASKET_HEIGHT + 20) {
+                    checkCollision();
 
-            if(this.position.y>=basketList.basketListArray.get(basketNo+1).getPosition().y+Constants.BASKET_HEIGHT &&
-                    this.position.y<=basketList.basketListArray.get(basketNo+1).getPosition().y+Constants.BASKET_HEIGHT+20) {
-                checkCollision();
-
+                }
             }
         }
         else {
