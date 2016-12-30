@@ -23,6 +23,9 @@ public class GameScreen extends ScreenAdapter{
         viewport = new ExtendViewport(Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
         basketList = new BasketList();
         egg = new Egg(basketList);
+
+        viewport.getCamera().translate(Constants.WORLD_WIDTH/2,Constants.WORLD_HEIGHT/2,0);
+        viewport.getCamera().update();
     }
 
     @Override
@@ -38,7 +41,7 @@ public class GameScreen extends ScreenAdapter{
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //shape.setProjectionMatrix(viewport.getCamera().combined);
+        shape.setProjectionMatrix(viewport.getCamera().combined);
 
         shape.begin(ShapeRenderer.ShapeType.Filled);
         basketList.render(shape);
