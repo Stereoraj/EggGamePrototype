@@ -1,7 +1,5 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.Gdx;
-
 /**
  * Created by stereoHeart on 30/12/2016.
  *
@@ -9,8 +7,8 @@ import com.badlogic.gdx.Gdx;
  */
 public class Constants {
     // dimension of the screen
-    public static float WORLD_WIDTH = Gdx.graphics.getWidth();
-    public static float WORLD_HEIGHT = Gdx.graphics.getHeight();
+    public static float WORLD_WIDTH = 350;
+    public static float WORLD_HEIGHT = 600;
 
     // dimension of the basket carrying the egg
     public static float BASKET_WIDTH = 50.0f;

@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Egg{
     Vector2 position;
     BasketList basketList;
-    int basketNo;
+    int basketNo,scoreCounter;
 
 
     float velocity = 7.0f;
@@ -26,6 +26,7 @@ public class Egg{
         this.basketList = basketList;
 
         basketNo = 0;
+        scoreCounter = 0;
 
         this.position.x = (basketList.basketListArray.get(basketNo).getPosition()).x + 25;
         this.position.y = (basketList.basketListArray.get(basketNo).getPosition()).y + 30;
@@ -47,7 +48,7 @@ public class Egg{
 
         // bouncing the ball
         if(movement != Movement.moving){
-            if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+            if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isTouched()) {
 
                 // initialising the initial velocity of the ball
                 velocity = 7.0f;
@@ -93,7 +94,7 @@ public class Egg{
                 this.position.x < basketList.basketListArray.get(basketNo+1).getPosition().x + Constants.BASKET_WIDTH){
             basketNo++;
             movement = Movement.stopping;
-
+            scoreCounter++;
 
         }
     }
@@ -104,6 +105,10 @@ public class Egg{
 
     public void setBasketNo(int basketNo){
         this.basketNo = basketNo;
+    }
+
+    public int getScore(){
+        return scoreCounter;
     }
 
 
