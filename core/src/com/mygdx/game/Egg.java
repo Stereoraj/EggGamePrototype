@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Egg{
     Vector2 position;
     BasketList basketList;
-    int basketNo,scoreCounter;
+    int basketNo,scoreCounter,eggsLeft;
 
 
     float velocity = 7.0f;
@@ -27,6 +27,7 @@ public class Egg{
 
         basketNo = 0;
         scoreCounter = 0;
+        eggsLeft = 6;
 
         this.position.x = (basketList.basketListArray.get(basketNo).getPosition()).x + 25;
         this.position.y = (basketList.basketListArray.get(basketNo).getPosition()).y + 30;
@@ -66,6 +67,10 @@ public class Egg{
                     checkCollision();
 
                 }
+
+            }
+            if(eggsLeft==0){
+                //Gdx.app.exit();
             }
         }
         else {
@@ -81,7 +86,8 @@ public class Egg{
             velocity = -7;
 
         if(position.y < 0) {
-            movement = movement.stopping;
+            movement = Movement.stopping;
+            eggsLeft--;
             velocity = 7;
         }
         velocity += Constants.GRAVITY * Gdx.graphics.getDeltaTime();
@@ -109,6 +115,10 @@ public class Egg{
 
     public int getScore(){
         return scoreCounter;
+    }
+
+    public int getEggsLeft(){
+        return eggsLeft;
     }
 
 

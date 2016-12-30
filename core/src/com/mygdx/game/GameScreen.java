@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -29,7 +28,7 @@ public class GameScreen extends ScreenAdapter{
         shape = new ShapeRenderer();
         batch = new SpriteBatch();
         viewport = new StretchViewport(Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
-        hudViewport = new ScreenViewport();
+        //hudViewport = new ScreenViewport();
 
         basketList = new BasketList();
         egg = new Egg(basketList);
@@ -40,8 +39,8 @@ public class GameScreen extends ScreenAdapter{
         viewport.getCamera().translate(Constants.WORLD_WIDTH/2,Constants.WORLD_HEIGHT/2,0);
         viewport.getCamera().update();
 
-        hudViewport.getCamera().translate(Constants.WORLD_WIDTH/2,Constants.WORLD_HEIGHT/2,0);
-        hudViewport.getCamera().update();
+        //hudViewport.getCamera().translate(Constants.WORLD_WIDTH/2,Constants.WORLD_HEIGHT/2,0);
+        //hudViewport.getCamera().update();
     }
 
     @Override
@@ -75,14 +74,18 @@ public class GameScreen extends ScreenAdapter{
         shape.rect(0,Constants.WORLD_HEIGHT - 20,Constants.WORLD_WIDTH,20);
         shape.end();
 
-        hudViewport.apply();
-        batch.setProjectionMatrix(hudViewport.getCamera().combined);
+        //hudViewport.apply();
+        //batch.setProjectionMatrix(hudViewport.getCamera().combined);
 
         batch.begin();
         final String msg= "Score: " + egg.getScore();
+        final String fps = "FPS: " + (1/Gdx.graphics.getDeltaTime());
+        final String life = "Eggs Left: " + egg.getEggsLeft();
         //batch.setColor(Color.BLACK);
         //font.setColor(Color.BLACK);
         font.draw(batch,msg,5,Constants.WORLD_HEIGHT - 5);
+        font.draw(batch,fps,Constants.WORLD_WIDTH/2 - 80,Constants.WORLD_HEIGHT - 5);
+        font.draw(batch,life,Constants.WORLD_WIDTH - 90,Constants.WORLD_HEIGHT - 5);
         batch.end();
 
         Gdx.app.log("GameScreen","Rendering");
@@ -91,7 +94,7 @@ public class GameScreen extends ScreenAdapter{
     @Override
     public void resize(int width, int height) {
         viewport.update(width,height);
-        hudViewport.update(width,height);
+        //hudViewport.update(width,height);
         super.resize(width, height);
     }
 
