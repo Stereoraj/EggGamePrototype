@@ -17,4 +17,8 @@ public class Constants {
     public static float BASKET_HEIGHT = 20.0f;
     public static int  BASKET_DISTANCE = 100;
 
+    // movement of eggs
+
+    public static final float GRAVITY = -9.8f;
+
 }

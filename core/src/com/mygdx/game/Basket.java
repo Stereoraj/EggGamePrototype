@@ -16,6 +16,8 @@ public class Basket {
 
     public  float MOVE_RATE = MathUtils.random(50,150);
 
+
+
     public Basket(float x,float y){
         position = new Vector2(x,y);
         direction = Direction.FORWARD;
