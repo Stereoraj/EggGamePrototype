@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
@@ -38,7 +39,7 @@ public class GameScreen extends ScreenAdapter{
 
         viewport.apply();
 
-        Gdx.gl.glClearColor(1,1,1,1);
+        Gdx.gl.glClearColor(0.5f,0.2f,0.8f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         shape.setProjectionMatrix(viewport.getCamera().combined);
@@ -52,6 +53,12 @@ public class GameScreen extends ScreenAdapter{
             basketList.createNewList();
             egg.setBasketNo(0);
         }
+
+        // rendering the rectangle for the game statistics
+        shape.begin(ShapeRenderer.ShapeType.Filled);
+        shape.setColor(Color.GREEN);
+        shape.rect(0,Constants.WORLD_HEIGHT - 20,Constants.WORLD_WIDTH,20);
+        shape.end();
 
         Gdx.app.log("GameScreen","Rendering");
     }

@@ -33,8 +33,14 @@ public class BasketList {
     }
 
     public void render(ShapeRenderer renderer){
+        int flag = 0;
         for(Basket basket: basketListArray){
-            basket.render(renderer);
+            flag = 0;
+            if(basketListArray.indexOf(basket,true)==0 || basketListArray.indexOf(basket,true)==5) {
+                flag = 1;
+
+            }
+            basket.render(renderer, flag);
         }
     }
 

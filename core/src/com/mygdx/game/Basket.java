@@ -40,8 +40,11 @@ public class Basket {
 
     }
 
-    public void render(ShapeRenderer shape){
-        shape.setColor(Color.BLACK);
+    public void render(ShapeRenderer shape,int flag){
+        if(flag==1)
+            shape.setColor(Color.GREEN);
+        else
+            shape.setColor(Color.BROWN);
         shape.rect(position.x,position.y,Constants.BASKET_WIDTH,Constants.BASKET_HEIGHT);
     }
 
