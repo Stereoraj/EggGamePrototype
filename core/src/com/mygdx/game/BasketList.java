@@ -19,7 +19,7 @@ public class BasketList {
     public void init(){
 
         for(int i=10;i<600;i+=100){
-            basketList.add(new Basket(MathUtils.random(GameScreen.WORLD_WIDTH - 50),i));
+            basketList.add(new Basket(MathUtils.random(Constants.WORLD_WIDTH - 50),i));
         }
 
     }

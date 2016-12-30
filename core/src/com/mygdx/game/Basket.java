@@ -13,7 +13,7 @@ public class Basket {
     Vector2 position;
     Direction direction;
 
-    public static float MOVE_RATE = MathUtils.random(70,150);
+    public  float MOVE_RATE = MathUtils.random(70,150);
 
     private float width = 50.0f;
     private float height = 20.0f;
@@ -25,7 +25,7 @@ public class Basket {
 
     public void update(float delta){
 
-        if(position.x + width >= GameScreen.WORLD_WIDTH)    direction = Direction.BACKWARD;
+        if(position.x + width >= Constants.WORLD_WIDTH)    direction = Direction.BACKWARD;
         if(position.x <=0)                                  direction = Direction.FORWARD;
 
         if(direction == Direction.FORWARD)

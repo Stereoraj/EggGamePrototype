@@ -31,8 +31,8 @@ public class Egg{
     }
 
     public void update(float delta){
-        if(position.y>GameScreen.WORLD_HEIGHT){
-            position.y = GameScreen.WORLD_HEIGHT;
+        if(position.y>Constants.WORLD_HEIGHT){
+            position.y = Constants.WORLD_HEIGHT;
         }
         if(position.y<0){
             position.y = 0;

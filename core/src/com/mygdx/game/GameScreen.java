@@ -19,12 +19,9 @@ public class GameScreen extends ScreenAdapter{
 
     private Egg egg;
 
-    public static float WORLD_WIDTH = Gdx.graphics.getWidth();
-    public static float WORLD_HEIGHT = Gdx.graphics.getHeight();
-
     public GameScreen(){
         shape = new ShapeRenderer();
-        viewport = new ExtendViewport(WORLD_WIDTH,WORLD_HEIGHT);
+        viewport = new ExtendViewport(Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
         basketList = new BasketList();
         egg = new Egg(basketList);
 
