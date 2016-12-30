@@ -13,6 +13,8 @@ public class Egg{
     BasketList basketList;
     int basketNo;
 
+    OnBasket onBasket;
+
 
     public Egg(BasketList basketList){
         position = new Vector2();
@@ -20,8 +22,10 @@ public class Egg{
 
         basketNo = 0;
 
-        this.position.x = (basketList.basketList.get(0).getPosition()).x + 25;
-        this.position.y = (basketList.basketList.get(0).getPosition()).y + 30;
+        this.position.x = (basketList.basketListArray.get(0).getPosition()).x + 25;
+        this.position.y = (basketList.basketListArray.get(0).getPosition()).y + 30;
+
+        onBasket = OnBasket.on;
 
     }
 
@@ -38,32 +42,45 @@ public class Egg{
             position.y = 0;
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            //for(Basket basket: basketList.basketList){
-                //if(basket.getPosition().x < this.position.x && basket.getPosition().x+50 > this.position.x){
-                    basketNo++;
-                    if(basketNo>4)
-                        basketNo=4;
-                    this.position.x = (basketList.basketList.get(basketNo).getPosition()).x + 25;
-                    this.position.y = (basketList.basketList.get(basketNo).getPosition()).y + 28;
-                //}
-            //}
+
+            basketNo++;
+
+            if(basketNo>4)
+                basketNo=4;
+
+            this.position.y = (basketList.basketListArray.get(basketNo).getPosition()).y + 28;
+
+            if(this.position.x > basketList.basketListArray.get(basketNo).getPosition().x &&
+                    this.position.x < basketList.basketListArray.get(basketNo).getPosition().x + Constants.BASKET_WIDTH) {
+                onBasket = OnBasket.on;
+            }else{
+                onBasket = OnBasket.off;
+            }
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
             //position.y-=100*delta;
             basketNo--;
             if(basketNo<0)
                 basketNo=0;
-            this.position.x = (basketList.basketList.get(basketNo).getPosition()).x + 25;
-            this.position.y = (basketList.basketList.get(basketNo).getPosition()).y + 28;
+            this.position.x = (basketList.basketListArray.get(basketNo).getPosition()).x + 25;
+            this.position.y = (basketList.basketListArray.get(basketNo).getPosition()).y + 28;
         }
 
-        this.position.x = (basketList.basketList.get(basketNo).getPosition()).x + 25;
-        this.position.y = (basketList.basketList.get(basketNo).getPosition()).y + 28;
+        if(onBasket == OnBasket.on) {
+            this.position.x = (basketList.basketListArray.get(basketNo).getPosition()).x + 25;
+        }
+
+        this.position.y = (basketList.basketListArray.get(basketNo).getPosition()).y + 28;
 
 
     }
 
-    public Vector2 getPosition(){
-        return position;
+    // enumeration type to check whether the egg is on of off the basket
+
+    enum OnBasket{
+        on,
+        off
     }
+
+
 }

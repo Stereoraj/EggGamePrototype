@@ -13,9 +13,8 @@ public class Constants {
     public static float WORLD_HEIGHT = Gdx.graphics.getHeight();
 
     // dimension of the basket carrying the egg
-
     public static float BASKET_WIDTH = 50.0f;
     public static float BASKET_HEIGHT = 20.0f;
-
+    public static int  BASKET_DISTANCE = 100;
 
 }

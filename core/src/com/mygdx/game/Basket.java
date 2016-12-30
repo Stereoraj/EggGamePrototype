@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
@@ -13,7 +14,7 @@ public class Basket {
     Vector2 position;
     Direction direction;
 
-    public  float MOVE_RATE = MathUtils.random(70,150);
+    public  float MOVE_RATE = MathUtils.random(50,150);
 
     public Basket(float x,float y){
         position = new Vector2(x,y);
@@ -21,6 +22,8 @@ public class Basket {
     }
 
     public void update(float delta){
+
+        Gdx.app.log("basket"," "+MOVE_RATE);
 
         if(position.x + Constants.BASKET_WIDTH >= Constants.WORLD_WIDTH)
             direction = Direction.BACKWARD;
