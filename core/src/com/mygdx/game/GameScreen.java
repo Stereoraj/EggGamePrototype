@@ -1,7 +1,8 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,7 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by stereoHeart on 27/12/2016.
  */
-public class GameScreen extends ScreenAdapter{
+public class GameScreen extends InputAdapter implements Screen {
 
     private EggGame eggGame;
     private ShapeRenderer shape;
@@ -45,11 +46,13 @@ public class GameScreen extends ScreenAdapter{
 
         hudViewport.getCamera().translate(Constants.WORLD_WIDTH/2,Constants.WORLD_HEIGHT/2,0);
         hudViewport.getCamera().update();
+
+        Gdx.input.setInputProcessor(this);
     }
 
     @Override
     public void render(float delta) {
-        super.render(delta);
+        //super.render(delta);
 
         // updating the entities
         basketList.update(delta);
@@ -103,17 +106,38 @@ public class GameScreen extends ScreenAdapter{
     public void resize(int width, int height) {
         viewport.update(width,height);
         hudViewport.update(width,height);
-        super.resize(width, height);
+        //super.resize(width, height);
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
     }
 
     @Override
     public void show() {
-        super.show();
+        //super.show();
     }
 
     @Override
     public void dispose() {
-        super.dispose();
+        //super.dispose();
         shape.dispose();
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        //do nothing
+        return super.touchDown(screenX, screenY, pointer, button);
     }
 }

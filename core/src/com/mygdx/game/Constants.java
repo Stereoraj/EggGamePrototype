@@ -21,7 +21,7 @@ public class Constants {
 
     public static final float GRAVITY = -9.8f;
 
-    public static final Vector2 MENU_CIRLCE_CENTER = new Vector2(WORLD_WIDTH/2,WORLD_HEIGHT/2);
+    public static final Vector2 MENU_CIRCLE_CENTER = new Vector2(WORLD_WIDTH/2,WORLD_HEIGHT/2);
     public static final float MENU_CIRCLE_RADIUS = 100;
 
 }

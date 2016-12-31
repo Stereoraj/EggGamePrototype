@@ -1,17 +1,19 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
  * Created by stereoHeart on 31/12/2016.
  */
-public class MenuScreen  implements Screen {
+public class MenuScreen  extends InputAdapter implements Screen {
 
     Viewport viewport;
     ShapeRenderer renderer;
@@ -22,6 +24,8 @@ public class MenuScreen  implements Screen {
         this.eggGame = eggGame;
         viewport = new StretchViewport(Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
         renderer = new ShapeRenderer();
+
+        Gdx.input.setInputProcessor(this);
 
         viewport.getCamera().translate(Constants.WORLD_WIDTH/2,Constants.WORLD_HEIGHT/2,0);
         viewport.getCamera().update();
@@ -56,23 +60,8 @@ public class MenuScreen  implements Screen {
         renderer.end();
 
 
-
-        if(Gdx.input.justTouched()){
-            eggGame.showGameScreen();
-        }
-
     }
 
-    /*@Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        //Vector2 worldTouch = viewport.unproject(new Vector2(screenX, screenY));
-
-        //if (worldTouch.dst(Constants.MENU_CIRLCE_CENTER) < Constants.MENU_CIRCLE_RADIUS) {
-            eggGame.showGameScreen();
-        //}
-        Gdx.app.log("key","updates");
-        return false;
-    }*/
 
     @Override
     public void resize(int width, int height) {
@@ -91,7 +80,7 @@ public class MenuScreen  implements Screen {
 
     @Override
     public void hide() {
-
+        renderer.dispose();
     }
 
     @Override
@@ -100,7 +89,16 @@ public class MenuScreen  implements Screen {
     }
 
 
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button){
 
+        Vector2 worldTouch = viewport.unproject(new Vector2(screenX, screenY));
+        System.out.println(" "+worldTouch.x+" "+worldTouch.y);
 
+        if (worldTouch.dst(Constants.MENU_CIRCLE_CENTER) < Constants.MENU_CIRCLE_RADIUS) {
+            eggGame.showGameScreen();
+        }
 
+        return true;
+    }
 }
