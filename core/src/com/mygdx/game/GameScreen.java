@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -16,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  */
 public class GameScreen extends ScreenAdapter{
 
+    private EggGame eggGame;
     private ShapeRenderer shape;
     private Viewport viewport,hudViewport;
     private SpriteBatch batch;
@@ -24,11 +26,13 @@ public class GameScreen extends ScreenAdapter{
     private BasketList basketList;
     private Egg egg;
 
-    public GameScreen(){
+    public GameScreen(EggGame eggGame){
+        this.eggGame = eggGame;
+
         shape = new ShapeRenderer();
         batch = new SpriteBatch();
         viewport = new StretchViewport(Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
-        //hudViewport = new ScreenViewport();
+        hudViewport = new ScreenViewport();
 
         basketList = new BasketList();
         egg = new Egg(basketList);
@@ -39,8 +43,8 @@ public class GameScreen extends ScreenAdapter{
         viewport.getCamera().translate(Constants.WORLD_WIDTH/2,Constants.WORLD_HEIGHT/2,0);
         viewport.getCamera().update();
 
-        //hudViewport.getCamera().translate(Constants.WORLD_WIDTH/2,Constants.WORLD_HEIGHT/2,0);
-        //hudViewport.getCamera().update();
+        hudViewport.getCamera().translate(Constants.WORLD_WIDTH/2,Constants.WORLD_HEIGHT/2,0);
+        hudViewport.getCamera().update();
     }
 
     @Override
@@ -74,8 +78,8 @@ public class GameScreen extends ScreenAdapter{
         shape.rect(0,Constants.WORLD_HEIGHT - 20,Constants.WORLD_WIDTH,20);
         shape.end();
 
-        //hudViewport.apply();
-        //batch.setProjectionMatrix(hudViewport.getCamera().combined);
+        hudViewport.apply();
+        batch.setProjectionMatrix(hudViewport.getCamera().combined);
 
         batch.begin();
         final String msg= "Score: " + egg.getScore();
@@ -88,13 +92,17 @@ public class GameScreen extends ScreenAdapter{
         font.draw(batch,life,Constants.WORLD_WIDTH - 90,Constants.WORLD_HEIGHT - 5);
         batch.end();
 
+        if(egg.getEggsLeft()==0){
+            eggGame.showMenuScreen();
+        }
+
         Gdx.app.log("GameScreen","Rendering");
     }
 
     @Override
     public void resize(int width, int height) {
         viewport.update(width,height);
-        //hudViewport.update(width,height);
+        hudViewport.update(width,height);
         super.resize(width, height);
     }
 

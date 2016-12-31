@@ -69,9 +69,7 @@ public class Egg{
                 }
 
             }
-            if(eggsLeft==0){
-                //Gdx.app.exit();
-            }
+
         }
         else {
 

@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.math.Vector2;
+
 /**
  * Created by stereoHeart on 30/12/2016.
  *
@@ -18,5 +20,8 @@ public class Constants {
     // movement of eggs
 
     public static final float GRAVITY = -9.8f;
+
+    public static final Vector2 MENU_CIRLCE_CENTER = new Vector2(WORLD_WIDTH/2,WORLD_HEIGHT/2);
+    public static final float MENU_CIRCLE_RADIUS = 100;
 
 }
